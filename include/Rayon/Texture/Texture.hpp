@@ -157,6 +157,13 @@ public:
      * @param image
      */
     RTexture2D(RImage& image);
+
+    /**
+     * @brief Unload a texture
+     *
+     */
+    ~RTexture2D();
+
     /**
      * @brief Get the inner texture
      *
@@ -194,6 +201,24 @@ public:
      *
      */
     void draw();
+
+    /**
+     * @brief Load a texture from a filename
+     * @param fileName
+     */
+    void load(const std::string& fileName);
+
+    /**
+     * @brief Load a texture from an image
+     * @param image
+     */
+    void load(const Image& image);
+
+    /**
+     * @brief Load a texture from an RImage
+     * @param image
+     */
+    void load(const RImage& image);
 };
 
 } // namespace rayon
