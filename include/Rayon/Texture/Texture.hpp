@@ -17,12 +17,6 @@ private:
 
 public:
     /**
-     * @brief Get the inner image object
-     *
-     * @return Image&
-     */
-    Image& inner();
-    /**
      * @brief Load image from file into CPU memory (RAM)
      *
      * @param fileName
@@ -88,14 +82,14 @@ public:
      *
      * @param color
      */
-    void clearBackground(const Color& color);
+    RImage& clearBackground(const Color& color);
     /**
      * @brief Draw pixel on image
      *
      * @param pos
      * @param color
      */
-    void drawPixel(const Vector2& pos, const Color& color);
+    RImage& drawPixel(const Vector2& pos, const Color& color);
     /**
      * @brief Draw circle on image
      *
@@ -103,7 +97,7 @@ public:
      * @param radius
      * @param color
      */
-    void drawCircle(const Vector2& center, int radius, const Color& color);
+    RImage& drawCircle(const Vector2& center, int radius, const Color& color);
     /**
      * @brief Draw rectangle on image
      *
@@ -111,14 +105,22 @@ public:
      * @param size
      * @param color
      */
-    void drawRectangle(
+    RImage& drawRectangle(
         const Vector2& pos, const Vector2& size, const Color& color);
+
     /**
      * @brief Get the image object
      *
      * @return Image&
      */
-    Image& image();
+    Image& inner();
+
+    /**
+     * @brief Get the image object
+     *
+     * @return const Image&
+     */
+    const Image& inner() const;
 
     /**
      * @brief Destroy the RImage object
@@ -156,7 +158,7 @@ public:
      *
      * @param image
      */
-    RTexture2D(RImage& image);
+    RTexture2D(const RImage& image);
 
     /**
      * @brief Unload a texture
@@ -183,42 +185,42 @@ public:
      * @param color
      */
 
-    void setColor(const Color& color);
+    RTexture2D& setColor(const Color& color);
     /**
      * @brief Set the texture position
      *
      * @param pos
      */
-    void setPosition(const Vector2& pos);
+    RTexture2D& setPosition(const Vector2& pos);
     /**
      * @brief Set the texture rectangle
      *
      * @param rect
      */
-    void setRectangle(const Rectangle& rect);
+    RTexture2D& setRectangle(const Rectangle& rect);
     /**
      * @brief Draw texture
      *
      */
-    void draw();
+    RTexture2D& draw();
 
     /**
      * @brief Load a texture from a filename
      * @param fileName
      */
-    void load(const std::string& fileName);
+    RTexture2D& load(const std::string& fileName);
 
     /**
      * @brief Load a texture from an image
      * @param image
      */
-    void load(const Image& image);
+    RTexture2D& load(const Image& image);
 
     /**
      * @brief Load a texture from an RImage
      * @param image
      */
-    void load(const RImage& image);
+    RTexture2D& load(const RImage& image);
 };
 
 } // namespace rayon

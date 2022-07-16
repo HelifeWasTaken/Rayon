@@ -37,30 +37,34 @@ RImage::RImage(const F& f, Args&&... args)
     _image = f(std::forward<Args>(args)...);
 }
 
-Image& RImage::inner() { return _image; }
-
-void RImage::clearBackground(const Color& color)
+RImage& RImage::clearBackground(const Color& color)
 {
     ImageClearBackground(&_image, color);
+    return *this;
 }
 
-void RImage::drawPixel(const Vector2& pos, const Color& color)
+RImage& RImage::drawPixel(const Vector2& pos, const Color& color)
 {
     ImageDrawPixelV(&_image, pos, color);
+    return *this;
 }
 
-void RImage::drawCircle(const Vector2& center, int radius, const Color& color)
+RImage& RImage::drawCircle(const Vector2& center, int radius, const Color& color)
 {
     ImageDrawCircleV(&_image, center, radius, color);
+    return *this;
 }
 
-void RImage::drawRectangle(
+RImage& RImage::drawRectangle(
     const Vector2& pos, const Vector2& size, const Color& color)
 {
     ImageDrawRectangleV(&_image, pos, size, color);
+    return *this;
 }
 
-Image& RImage::image() { return _image; }
+Image& RImage::inner() { return _image; }
+
+const Image& RImage::inner() const { return _image; }
 
 RImage::~RImage() { UnloadImage(_image); }
 
@@ -70,9 +74,9 @@ RTexture2D::RTexture2D(const std::string& fileName)
     _rectangle = { 0, 0, (float)_texture.width, (float)_texture.height };
 }
 
-void load(const std::string& fileName)
+RTexture2D& RTexture2D::load(const std::string& fileName)
 {
-    *this = RTexture2D(fileName);
+    return *this = RTexture2D(fileName);
 }
 
 RTexture2D::RTexture2D(const Image& image)
@@ -81,20 +85,20 @@ RTexture2D::RTexture2D(const Image& image)
     _rectangle = { 0, 0, (float)_texture.width, (float)_texture.height };
 }
 
-void load(const Image& image)
+RTexture2D& RTexture2D::load(const Image& image)
 {
-    *this = RTexture2D(image);
+    return *this = RTexture2D(image);
 }
 
-RTexture2D::RTexture2D(RImage& image)
+RTexture2D::RTexture2D(const RImage& image)
 {
-    _texture = LoadTextureFromImage(image.image());
+    _texture = LoadTextureFromImage(image.inner());
     _rectangle = { 0, 0, (float)_texture.width, (float)_texture.height };
 }
 
-void load(const RImage& image)
+RTexture2D& RTexture2D::load(const RImage& image)
 {
-    *this = RTexture2D(image);
+    return *this = RTexture2D(image);
 }
 
 RTexture2D::~RTexture2D()
@@ -106,12 +110,28 @@ Texture2D& RTexture2D::inner() { return _texture; }
 
 const Texture2D& RTexture2D::inner() const { return _texture; }
 
-void RTexture2D::setColor(const Color& color) { _tint = color; }
+RTexture2D& RTexture2D::setColor(const Color& color)
+{
+    _tint = color;
+    return *this;
+}
 
-void RTexture2D::setPosition(const Vector2& pos) { _pos = pos; }
+RTexture2D& RTexture2D::setPosition(const Vector2& pos)
+{
+    _pos = pos;
+    return *this;
+}
 
-void RTexture2D::setRectangle(const Rectangle& rect) { _rectangle = rect; }
+RTexture2D& RTexture2D::setRectangle(const Rectangle& rect)
+{
+    _rectangle = rect;
+    return *this;
+}
 
-void RTexture2D::draw() { DrawTextureRec(_texture, _rectangle, _pos, _tint); }
+RTexture2D& RTexture2D::draw()
+{
+    DrawTextureRec(_texture, _rectangle, _pos, _tint);
+    return *this;
+}
 
 }
