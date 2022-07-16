@@ -75,12 +75,12 @@ public:
      * @param f
      * @param args
      */
-
     template <typename F, typename... Args> RImage(const F& f, Args&&... args);
     /**
      * @brief Clear the image background
      *
      * @param color
+     * @return RImage&
      */
     RImage& clearBackground(const Color& color);
     /**
@@ -88,6 +88,7 @@ public:
      *
      * @param pos
      * @param color
+     * @return RImage&
      */
     RImage& drawPixel(const Vector2& pos, const Color& color);
     /**
@@ -96,6 +97,7 @@ public:
      * @param center
      * @param radius
      * @param color
+     * @return RImage&
      */
     RImage& drawCircle(const Vector2& center, int radius, const Color& color);
     /**
@@ -104,6 +106,7 @@ public:
      * @param pos
      * @param size
      * @param color
+     * @return RImage&
      */
     RImage& drawRectangle(
         const Vector2& pos, const Vector2& size, const Color& color);
@@ -177,48 +180,53 @@ public:
      *
      * @return const Texture2D&
      */
-
     const Texture2D& inner() const;
     /**
      * @brief Set the texture color
      *
      * @param color
+     * @return RTexture2D&
      */
-
     RTexture2D& setColor(const Color& color);
     /**
      * @brief Set the texture position
      *
      * @param pos
+     * @return RTexture2D&
      */
     RTexture2D& setPosition(const Vector2& pos);
     /**
      * @brief Set the texture rectangle
      *
      * @param rect
+     * @return RTexture2D&
      */
     RTexture2D& setRectangle(const Rectangle& rect);
     /**
      * @brief Draw texture
      *
+     * @return RTexture2D&
      */
     RTexture2D& draw();
 
     /**
      * @brief Load a texture from a filename
      * @param fileName
+     * @return RTexture2D&
      */
     RTexture2D& load(const std::string& fileName);
 
     /**
      * @brief Load a texture from an image
      * @param image
+     * @return RTexture2D&
      */
     RTexture2D& load(const Image& image);
 
     /**
      * @brief Load a texture from an RImage
      * @param image
+     * @return RTexture2D&
      */
     RTexture2D& load(const RImage& image);
 };

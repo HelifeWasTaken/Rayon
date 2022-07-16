@@ -30,7 +30,7 @@ namespace core {
          * @brief Construct a new Camera 3 object
          *
          */
-        Camera3();
+        Camera3() = default;
 
         /**
          * @brief get inner Camera object
@@ -129,19 +129,11 @@ namespace core {
         Camera3& setProjection(int type);
 
         /**
-         * @brief Set the camera move
+         * @brief Move the camera position
          * @param move
          * @return Camera3&
          */
         Camera3& move(const Vector3& move);
-
-        /**
-         * @brief Set the camera 2D moves
-         *
-         * @param move
-         * @return Camera3&
-         */
-        Camera3& move2D(const Vector2& move);
 
         /**
          * @brief Get the camera position
@@ -203,7 +195,7 @@ namespace core {
          * @brief Construct a new Camera 2 object
          *
          */
-        Camera2();
+        Camera2() = default;
 
         /**
          * @brief Get the camera 2D inner object
@@ -241,29 +233,33 @@ namespace core {
          * @brief Set the camera offset
          *
          * @param offset
+         * @return Camera2&
          */
-        void setOffset(const Vector2& offset);
+        Camera2& setOffset(const Vector2& offset);
 
         /**
          * @brief Set the camera target
          *
          * @param target
+         * @return Camera2&
          */
-        void setTarget(const Vector2& target);
+        Camera2& setTarget(const Vector2& target);
 
         /**
          * @brief Set the camera rotation
          *
          * @param rotation
+         * @return Camera2&
          */
-        void setRotation(float rotation);
+        Camera2& setRotation(float rotation);
 
         /**
          * @brief Set the camera zoom
          *
          * @param zoom
+         * @return Camera2&
          */
-        void setZoom(float zoom);
+        Camera2& setZoom(float zoom);
 
         /**
          * @brief Get the camera offset
@@ -292,6 +288,20 @@ namespace core {
          * @return float
          */
         float getZoom();
+
+        /**
+         * @brief Set all the camera values to zero
+         *
+         * @return Camera2&
+         */
+        Camera2& zero();
+
+        /**
+         * @brief Move the camera position
+         * @param move
+         * @return Camera2&
+         */
+        Camera2& move(const Vector2& move);
     };
 
     /**

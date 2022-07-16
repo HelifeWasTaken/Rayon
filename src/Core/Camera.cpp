@@ -4,8 +4,6 @@
 namespace rayon {
 namespace core {
 
-    Camera3::Camera3() { _camera = Camera(); }
-
     Ray Camera3::getMouseRay(const Vector2& mousePosition)
     {
         return GetMouseRay(mousePosition, _camera);
@@ -47,11 +45,6 @@ namespace core {
         setPosition({ _camera.position.x + move.x, _camera.position.y + move.y,
             _camera.position.z + move.z });
         return *this;
-    }
-
-    Camera3& Camera3::move2D(const Vector2& movev)
-    {
-        return move({ movev.x, movev.y, 0 });
     }
 
     Camera3& Camera3::setTarget(const Vector3& target)
@@ -96,8 +89,6 @@ namespace core {
         return *this;
     }
 
-    Camera2::Camera2() { }
-
     Camera2D& Camera2::inner() { return _camera; }
 
     Matrix Camera2::getCameraMatrix() { return GetCameraMatrix2D(_camera); }
@@ -112,21 +103,49 @@ namespace core {
         return GetScreenToWorld2D(position, _camera);
     }
 
-    void Camera2::setOffset(const Vector2& offset) { _camera.offset = offset; }
+    Camera2& Camera2::setOffset(const Vector2& offset)
+    {
+        _camera.offset = offset;
+        return *this;
+    }
 
-    void Camera2::setTarget(const Vector2& target) { _camera.target = target; }
+    Camera2& Camera2::setTarget(const Vector2& target)
+    {
+        _camera.target = target;
+        return *this;
+    }
 
-    void Camera2::setRotation(float rotation) { _camera.rotation = rotation; }
+    Camera2& Camera2::setRotation(float rotation)
+    {
+        _camera.rotation = rotation;
+        return *this;
+    }
 
-    void Camera2::setZoom(float zoom) { _camera.zoom = zoom; }
+    Camera2& Camera2::setZoom(float zoom)
+    {
+        _camera.zoom = zoom;
+        return *this;
+    }
 
-    Vector2 Camera2::getOffset() { return _camera.offset; }
+    Vector2 Camera2::getOffset()
+    {
+        return _camera.offset;
+    }
 
-    Vector2 Camera2::getTarget() { return _camera.target; }
+    Vector2 Camera2::getTarget()
+    {
+        return _camera.target;
+    }
 
-    float Camera2::getRotation() { return _camera.rotation; }
+    float Camera2::getRotation()
+    {
+        return _camera.rotation;
+    }
 
-    float Camera2::getZoom() { return _camera.zoom; }
+    float Camera2::getZoom()
+    {
+        return _camera.zoom;
+    }
 
     void setCameraPanControl(int keyPan) { SetCameraPanControl(keyPan); }
 
