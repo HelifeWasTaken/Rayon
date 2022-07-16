@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2021
-** B-YEP-400-RUN-4-1-indiestudio-mattis.dalleau
-** File description:
-** Window.cpp
-*/
-
 #include "Rayon/Core/Window.hpp"
 
 namespace rayon {

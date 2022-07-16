@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2022
-** B-YEP-400-RUN-4-1-indiestudio-mattis.dalleau
-** File description:
-** Clock
-*/
-
 #include "Rayon/Core/Clock.hpp"
 
 namespace rayon {
