@@ -30,79 +30,80 @@ namespace text {
          * @brief Construct a new RText object
          *
          */
-        RText();
+        RText() = default;
         /**
          * @brief Destroy the RText object
          *
          */
-        ~RText();
+        ~RText() = default;
         /**
          * @brief Set the text color
          *
          * @param tint
          */
 
-        void setColor(const Color& tint);
+        RText& setColor(const Color& tint);
 
         /**
          * @brief Get the text position
          *
          * @return Vector2
          */
-        Vector2 getPos(void);
+        const Vector2& getPosition() const;
 
         /**
          * @brief Set the _spacing variable
          *
          * @param spacing
          */
-        void setSpacing(const float& spacing);
+        RText& setSpacing(const float& spacing);
         /**
          * @brief Set the text font size
          *
          * @param fontSize
          */
-        void setFontSize(const float& fontSize);
+        RText& setFontSize(const float& fontSize);
         /**
          * @brief Set the text rotation
          *
          * @param rotation
          */
-        void setRotation(const float& rotation);
+        RText& setRotation(const float& rotation);
         /**
          * @brief Set the text font
          *
          * @param font
          */
-        void setFont(const Font& font);
+        RText& setFont(const Font& font);
         /**
          * @brief Set the text origin
          *
          * @param origin
          */
-        void setOrigin(const Vector2& origin);
+        RText& setOrigin(const Vector2& origin);
         /**
          * @brief Set the text pos
          *
          * @param pos
          */
-        void setPos(const Vector2& pos);
+        RText& setPosition(const Vector2& pos);
         /**
          * @brief Set the text string
          *
          * @param text
          */
-        void setString(const std::string& text);
+        RText& setText(const std::string& text);
         /**
-         * @brief Draw current FPS
+         * @brief Draw current FPS (Ignores current text)
          *
          */
-        void drawFPS();
+        RText& drawFPS();
+
         /**
-         * @brief Draw a text
+         * @brief Draw the current text
          *
          */
-        void drawText();
+        RText& draw();
     };
 }
 }
