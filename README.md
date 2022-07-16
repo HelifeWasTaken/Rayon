@@ -15,6 +15,8 @@ API is currently fully documented and works currently on Raylib4.2 (A specific c
 - Builder pattern could be added for a lot of the encapsulations! (I really love this design pattern)
 - Wiki with examples
 - Transforming VectorX to RVectorX and adding implicit cast operator `operator VectorX()`
+- Add specific matrix class
+- Add RenderTexture encapsulation
 
 ## Disclaimer:
 
