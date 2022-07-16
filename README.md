@@ -26,4 +26,4 @@ Even though everything is not encapsulated yet, you can still use C style code f
 - Alexis Cheron (@norech)
 - Nicolas Salimina (@NicolasSalimina)
 - Lenny Garnier (@GarnierLenny)
-- Luidgi Parinet (@Din974)]
+- Luidgi Parinet (@Din974)
