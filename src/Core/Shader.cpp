@@ -18,7 +18,7 @@ RShader::RShader(const std::string& vsFileName, std::nullptr_t)
     _loaded = true;
 }
 
-RShader::RShader(std::vector<char> vsCode, std::vector<char> fsCode)
+RShader::RShader(std::vector<char>& vsCode, std::vector<char>& fsCode)
 {
     _shader = LoadShaderFromMemory(vsCode.data(), fsCode.data());
     _loaded = true;
@@ -38,61 +38,66 @@ int RShader::getAttribLocation(const std::string& attribName)
     return GetShaderLocationAttrib(_shader, attribName.c_str());
 }
 
-void RShader::setValue(
+RShader& RShader::setValue(
     const std::string& uniformName, const void* value, int uniformType)
 {
     if (_uniformLocations.find(uniformName) == _uniformLocations.end())
         _uniformLocations[uniformName] = getUniformLocation(uniformName);
-    setValue(_uniformLocations[uniformName], value, uniformType);
+    return setValue(_uniformLocations[uniformName], value, uniformType);
 }
 
-void RShader::setValue(int locIndex, const void* value, int uniformType)
+RShader& RShader::setValue(int locIndex, const void* value, int uniformType)
 {
     SetShaderValue(_shader, locIndex, value, uniformType);
+    return *this;
 }
 
-void RShader::setValueV(const std::string& uniformName, const void* value,
+RShader& RShader::setValueV(const std::string& uniformName, const void* value,
     int uniformType, int count)
 {
     if (_uniformLocations.find(uniformName) == _uniformLocations.end())
         _uniformLocations[uniformName] = getUniformLocation(uniformName);
-    setValue(_uniformLocations[uniformName], value, uniformType);
+    return setValue(_uniformLocations[uniformName], value, uniformType);
 }
 
-void RShader::setValueV(
+RShader& RShader::setValueV(
     int locIndex, const void* value, int uniformType, int count)
 {
     SetShaderValueV(_shader, locIndex, value, uniformType, count);
+    return *this;
 }
 
-void RShader::setValueMatrix(const std::string& uniformName, Matrix mat)
+RShader& RShader::setValueMatrix(const std::string& uniformName, Matrix mat)
 {
     if (_uniformLocations.find(uniformName) == _uniformLocations.end())
         _uniformLocations[uniformName] = getUniformLocation(uniformName);
-    setValueMatrix(_uniformLocations[uniformName], mat);
+    return setValueMatrix(_uniformLocations[uniformName], mat);
 }
 
-void RShader::setValueMatrix(int locIndex, Matrix mat)
+RShader& RShader::setValueMatrix(int locIndex, Matrix mat)
 {
     SetShaderValueMatrix(_shader, locIndex, mat);
+    return *this;
 }
 
-void RShader::setValueTexture(const std::string& uniformName, Texture2D texture)
+RShader& RShader::setValueTexture(const std::string& uniformName, Texture2D texture)
 {
     if (_uniformLocations.find(uniformName) == _uniformLocations.end())
         _uniformLocations[uniformName] = getUniformLocation(uniformName);
-    setValueTexture(_uniformLocations[uniformName], texture);
+    return setValueTexture(_uniformLocations[uniformName], texture);
 }
 
-void RShader::setValueTexture(int locIndex, Texture2D texture)
+RShader& RShader::setValueTexture(int locIndex, Texture2D texture)
 {
     SetShaderValueTexture(_shader, locIndex, texture);
+    return *this;
 }
 
-void RShader::unload()
+RShader& RShader::unload()
 {
     if (_loaded) {
         UnloadShader(_shader);
         _loaded = false;
     }
+    return *this;
 }

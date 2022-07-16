@@ -21,7 +21,7 @@ public:
     RShader(std::nullptr_t nil1, const std::string& fsFileName);
     RShader(const std::string& vsFileName, std::nullptr_t nil2);
     RShader(const std::string& vsFileName, const std::string& fsFileName);
-    RShader(std::vector<char> vsCode, std::vector<char> fsCode);
+    RShader(std::vector<char>& vsCode, std::vector<char>& fsCode);
     /**
      * @brief Destroy the RShader object
      *
@@ -54,8 +54,9 @@ public:
      * @param locIndex
      * @param value
      * @param uniformType
+     * @return RShader&
      */
-    void setValue(int locIndex, const void* value, int uniformType);
+    RShader& setValue(int locIndex, const void* value, int uniformType);
     /**
      * @brief Set shader uniform value vector
      *
@@ -63,30 +64,34 @@ public:
      * @param value
      * @param uniformType
      * @param count
+     * @return RShader&
      */
-    void setValueV(int locIndex, const void* value, int uniformType, int count);
+    RShader& setValueV(int locIndex, const void* value, int uniformType, int count);
     /**
      * @brief Set shader uniform value (matrix 4x4)
      *
      * @param locIndex
      * @param mat
+     * @return RShader&
      */
-    void setValueMatrix(int locIndex, Matrix mat);
+    RShader& setValueMatrix(int locIndex, Matrix mat);
     /**
      * @brief Set shader uniform value for texture (sampler2d)
      *
      * @param locIndex
      * @param texture
+     * @return RShader&
      */
-    void setValueTexture(int locIndex, Texture2D texture);
+    RShader& setValueTexture(int locIndex, Texture2D texture);
     /**
      * @brief Set shader uniform value with a given uniform name
      *
      * @param uniformName
      * @param value
      * @param uniformType
+     * @return RShader&
      */
-    void setValue(
+    RShader& setValue(
         const std::string& uniformName, const void* value, int uniformType);
     /**
      * @brief Set shader uniform value vector with a given uniform name
@@ -95,29 +100,32 @@ public:
      * @param value
      * @param uniformType
      * @param count
+     * @return RShader&
      */
-    void setValueV(const std::string& uniformName, const void* value,
+    RShader& setValueV(const std::string& uniformName, const void* value,
         int uniformType, int count);
     /**
      * @brief Set shader uniform value (matrix 4x4) with a given uniform name
      *
      * @param uniformName
      * @param mat
+     * @return RShader&
      */
-    void setValueMatrix(const std::string& uniformName, Matrix mat);
+    RShader& setValueMatrix(const std::string& uniformName, Matrix mat);
     /**
      * @brief Set shader uniform value for texture (sampler2d) with a given
      * uniform name
      *
      * @param uniformName
      * @param texture
+     * @return RShader&
      */
-    void setValueTexture(const std::string& uniformName, Texture2D texture);
+    RShader& setValueTexture(const std::string& uniformName, Texture2D texture);
     /**
      * @brief Unload shader from GPU memory (VRAM)
-     *
+     * @return RShader&
      */
-    void unload();
+    RShader& unload();
 
 private:
     /**
