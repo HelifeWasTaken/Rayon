@@ -14,6 +14,7 @@ API is currently fully documented and works currently on Raylib4.2 (A specific c
 - It would be nice to have a `rl` or `raylib` namespace for anything in raylib.h like the `std::` namespace
 - Builder pattern could be added for a lot of the encapsulations! (I really love this design pattern)
 - Wiki with examples
+- Transforming VectorX to RVectorX and adding implicit cast operator `operator VectorX()`
 
 ## Disclaimer:
 
